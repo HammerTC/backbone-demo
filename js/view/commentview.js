@@ -71,8 +71,8 @@ var CommentView = Backbone.View.extend(
 			// create new FormView instance to edit the comment
 			var formview = new FormView({model: this.model});
 			
-			// insert FormView instance after the comment container
-			this.$el.after(formview.render().$el);
+			// insert FormView instance in modal window
+			formview.render().showModal();
 			
 			// listen to save success event to handle successful form submit event
 			formview.on('success', this.handleEditSuccess, this);

@@ -35,9 +35,9 @@ var NewButtonView = Backbone.View.extend(
 			// create new comment model
 			var comment = new CommentModel({});
 		
-			// render form view right after new button
+			// render form in modal window
 			var formview = new FormView({model: comment});
-			this.$el.after(formview.render().$el);
+			formview.render().showModal();
 		
 			// add saved model to collection after form was submitted successfully
 			formview.on('success', this.handleFormSuccess, this);

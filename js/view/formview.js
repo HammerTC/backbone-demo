@@ -6,7 +6,7 @@
  * @author Bodnar Istvan <istvan@gawker.com>
  */
 /*global Mustache, CommentView, CommentModel */
-var FormView = Backbone.View.extend(
+var FormView = Backbone.ModalView.extend(
 /** @lends FormView.prototype */
 	{
 		/**
@@ -77,6 +77,7 @@ var FormView = Backbone.View.extend(
 			
 			// remove form view from DOM and memory
 			this.remove();
+			this.hideModal();
 			return false;
 		},
 		
@@ -88,6 +89,7 @@ var FormView = Backbone.View.extend(
 		cancel: function () {
 			// clean up form
 			this.remove();
+			this.hideModal();
 			return false;
 		},
 		

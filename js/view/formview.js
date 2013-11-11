@@ -60,6 +60,20 @@ var FormView = Backbone.View.extend(
 		 * @returns {Boolean} Returns false to stop propagation
 		 */
 		submit: function () {
+			// we do not need old errors
+			this.$el.find('.error').remove();
+
+			// simple validation
+			if (!(this.$el.find('.author').val() && this.$el.find('.text').val())) {
+				if (!this.$el.find('.author').val()) {
+					this.showValidation('author');
+				}
+				if (!this.$el.find('.text').val()) {
+					this.showValidation('text');
+				}
+				return false;
+			}
+		
 			// set values from form on model
 			this.model.set({
 				author: this.$el.find('.author').val(),
@@ -113,6 +127,23 @@ var FormView = Backbone.View.extend(
 			
 			// call backbones default view remove method
 			Backbone.View.prototype.remove.call(this);
+		},
+		
+		/**
+		 * Show warning on empty inputs
+		 */
+		showValidation: function (selector) {
+			var $error = $('<div />')
+							.text('Do not leave ' + selector + ' field empty!')
+							.addClass('error');
+
+			// append error message to invalid input
+			this.$el.find('.' + selector).after($error);
+
+			// remove error message after 5 seconds
+			setTimeout(function () {
+				$error.remove();
+			}, 5000);
 		}
 	}
 );

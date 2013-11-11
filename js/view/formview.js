@@ -86,6 +86,14 @@ var FormView = Backbone.View.extend(
 		* @returns {Boolean} Returns false to stop propagation
 		*/
 		cancel: function () {
+			// Question #1...
+			var NewText = this.$el.find('.text').val() || '',
+				OldText = this.model.get('text') || '';
+
+			if (NewText != OldText && !confirm("Unsaved changes will be lost? Is it OK for you?")) {
+				return false;
+			}
+			// ...Question #1
 			// clean up form
 			this.remove();
 			return false;
@@ -113,6 +121,16 @@ var FormView = Backbone.View.extend(
 			
 			// call backbones default view remove method
 			Backbone.View.prototype.remove.call(this);
+		},
+
+		/**
+		 * "There can be only one" edit form - Question #2
+		 */
+		highlander: function () {
+			if ($('.commentform').length) {
+				$('.cancel').trigger('click');
+			}
+			return Boolean($('.commentform').length);
 		}
 	}
 );

@@ -71,6 +71,11 @@ var CommentView = Backbone.View.extend(
 			// create new FormView instance to edit the comment
 			var formview = new FormView({model: this.model});
 			
+			// Question2...
+			if (formview.highlander()) {
+				return false;
+			}
+			// ...Question2
 			// insert FormView instance after the comment container
 			this.$el.after(formview.render().$el);
 			

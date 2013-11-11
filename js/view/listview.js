@@ -22,6 +22,7 @@ var CommentlistView = Backbone.View.extend(
 		 * @returns {CommentlistView} Returns the view instance itself, to allow chaining view commands.
 		 */
 		render: function () {
+			var collection = this.collection;
 			// first clean up the container
 			this.$el.empty();
 			
@@ -32,6 +33,8 @@ var CommentlistView = Backbone.View.extend(
 					model: item
 				});
 				
+				collection.lastAuthor = item.get('author');
+
 				// append rendered CommentView instance to CommentlistViews container
 				this.$el.append(commentview.render().$el);
 			}, this);

@@ -33,7 +33,7 @@ var NewButtonView = Backbone.View.extend(
 		 */
 		createComment: function () {
 			// create new comment model
-			var comment = new CommentModel({});
+			var comment = new CommentModel({author: this.collection.lastAuthor});
 		
 			// render form view right after new button
 			var formview = new FormView({model: comment});

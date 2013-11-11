@@ -14,6 +14,12 @@ var CommentCollection = Backbone.Collection.extend(
 		 * Sets the allowed type of contained models
 		 * @type Backbone.Model
 		 */
-		model: CommentModel
+		model: CommentModel,
+
+		/**
+		 * Name of author of the last submitted comment
+		 * @type String
+		 */
+		lastAuthor: ''
 	}
 );
